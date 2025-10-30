@@ -1,0 +1,30 @@
+.button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.primary {
+    background-color: #007bff;
+    color: white;
+    transition: all 0.5s ease;
+}
+
+.primary:hover {
+    background-color: #0056b3;
+    box-shadow: 0 2px 8px rgba(122, 122, 122, 0.5);
+}
+
+.secondary {
+    background-color: #6c757d;
+    color: white;
+    transition: all 0.5s ease;
+}
+
+.secondary:hover {
+    background-color: #545b62;
+    box-shadow: 0 2px 8px rgba(122, 122, 122, 0.5);
+}

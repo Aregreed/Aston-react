@@ -5,18 +5,18 @@
 }
 
 .title {
-    color: #333;
     margin-bottom: 20px;
 }
 
 .loading {
     text-align: center;
-    color: #666;
     font-size: 18px;
+    padding: 40px;
 }
 
 .error {
     text-align: center;
     color: #d32f2f;
     font-size: 18px;
+    padding: 40px;
 }
