@@ -7,7 +7,7 @@ interface PostCardProps {
 
 const PostCard = ({ post }: PostCardProps) => {
     return (
-        <div className={styles.card}>
+        <div className={`${styles.card} card`}>
             <h3 className={styles.title}>{post.title}</h3>
             <p className={styles.content}>{post.body}</p>
         </div>

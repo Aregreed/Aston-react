@@ -7,7 +7,7 @@ const MainLayout = () => {
     return (
         <div className={styles.app}>
             <Header />
-            <main className={styles.main}>
+            <main className={`${styles.main} main`}>
                 <PostList />
             </main>
             <Footer />
