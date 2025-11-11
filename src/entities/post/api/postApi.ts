@@ -7,6 +7,14 @@ export interface Post {
     userId: number;
 }
 
+export interface Comment {
+    postId: number;
+    id: number;
+    name: string;
+    email: string;
+    body: string;
+}
+
 export const postsApi = createApi({
     reducerPath: "postsApi",
     baseQuery: fetchBaseQuery({
@@ -19,7 +27,14 @@ export const postsApi = createApi({
         getPostById: builder.query<Post, number>({
             query: (id) => `posts/${id}`,
         }),
+        getCommentsByPostId: builder.query<Comment[], number>({
+            query: (postId) => `posts/${postId}/comments`,
+        }),
     }),
 });
 
-export const { useGetPostsQuery, useGetPostByIdQuery } = postsApi;
+export const {
+    useGetPostsQuery,
+    useGetPostByIdQuery,
+    useGetCommentsByPostIdQuery,
+} = postsApi;

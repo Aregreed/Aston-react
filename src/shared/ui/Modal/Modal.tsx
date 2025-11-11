@@ -8,7 +8,13 @@ interface ModalProps {
     children: React.ReactNode;
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
+interface ModalComponent extends React.FC<ModalProps> {
+    Header: React.FC<{ children: React.ReactNode }>;
+    Body: React.FC<{ children: React.ReactNode }>;
+    Footer: React.FC<{ children: React.ReactNode }>;
+}
+
+const Modal: ModalComponent = ({ isOpen, onClose, children }) => {
     useEffect(() => {
         const handleEscape = (e: KeyboardEvent) => {
             if (e.key === "Escape") {
@@ -18,16 +24,10 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
 
         if (isOpen) {
             document.addEventListener("keydown", handleEscape);
-            const scrollbarWidth =
-                window.innerWidth - document.documentElement.clientWidth;
-            document.body.style.paddingRight = `${scrollbarWidth}px`;
-            document.body.style.overflow = "hidden";
         }
 
         return () => {
             document.removeEventListener("keydown", handleEscape);
-            document.body.style.paddingRight = "";
-            document.body.style.overflow = "";
         };
     }, [isOpen, onClose]);
 
@@ -48,5 +48,21 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
         document.body
     );
 };
+
+const Header: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+    <div className={styles.header}>{children}</div>
+);
+
+const Body: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+    <div className={styles.body}>{children}</div>
+);
+
+const Footer: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+    <div className={styles.footer}>{children}</div>
+);
+
+Modal.Header = Header;
+Modal.Body = Body;
+Modal.Footer = Footer;
 
 export default Modal;

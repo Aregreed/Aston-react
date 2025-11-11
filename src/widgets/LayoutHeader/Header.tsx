@@ -25,15 +25,19 @@ const Header = () => {
             </header>
 
             <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-                <h2>О проекте</h2>
-                <p>Это учебный проект React.</p>
-                <p>Используемые технологии:</p>
-                <ul>
-                    <li>React + TypeScript</li>
-                    <li>Redux Toolkit + RTK Query</li>
-                    <li>CSS Modules</li>
-                    <li>JSONPlaceholder API</li>
-                </ul>
+                <Modal.Header>
+                    <h2>О проекте</h2>
+                </Modal.Header>
+                <Modal.Body>
+                    <p>Этот блог создан в рамках обучения React.</p>
+                    <p>Используемые технологии:</p>
+                    <ul>
+                        <li>React + TypeScript</li>
+                        <li>Redux Toolkit + RTK Query</li>
+                        <li>CSS Modules</li>
+                        <li>JSONPlaceholder API</li>
+                    </ul>
+                </Modal.Body>
             </Modal>
         </>
     );
