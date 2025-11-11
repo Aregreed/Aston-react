@@ -20,3 +20,9 @@
     font-size: 18px;
     padding: 40px;
 }
+
+.posts {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
