@@ -1,14 +1,16 @@
 import Header from "../../widgets/LayoutHeader/Header";
 import Footer from "../../widgets/LayoutFooter/Footer";
-import PostList from "../../widgets/PostList/PostList";
+import UserTabs from '../../widgets/UserTabs/UserTabs';
 import styles from "./MainLayout.module.css";
+import { Outlet } from 'react-router-dom';
 
 const MainLayout = () => {
     return (
         <div className={styles.app}>
             <Header />
+            <UserTabs />
             <main className={`${styles.main} main`}>
-                <PostList />
+                <Outlet />
             </main>
             <Footer />
         </div>

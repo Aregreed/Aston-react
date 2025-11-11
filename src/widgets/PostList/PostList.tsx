@@ -1,4 +1,4 @@
-import { useGetPostsQuery } from "../../entities/post/api/postApi";
+import { usePosts } from "../../features/PostList/model/hooks/usePosts";
 import PostCard from "../../entities/post/ui/PostCard";
 import PostLengthFilter from "../../features/PostLengthFilter/ui/PostLengthFilter";
 import { filterByLength } from "../../features/PostLengthFilter/lib/filterByLength";
@@ -7,7 +7,7 @@ import React, { useMemo, useState, useCallback } from "react";
 import withLoading from "../../shared/lib/hoc/withLoading";
 
 const PostList: React.FC = () => {
-    const { data: posts, error } = useGetPostsQuery();
+    const { posts, error } = usePosts();
     const [minTitleLength, setMinTitleLength] = useState(5);
 
     const filteredPosts = useMemo(() => {
@@ -24,22 +24,18 @@ const PostList: React.FC = () => {
     }
 
     return (
-        <>
-            <div className={styles.container}>
-                <h2 className={styles.title}>Последние посты</h2>
+        <div className={styles.container}>
+            <PostLengthFilter
+                onLengthChange={handleLengthChange}
+                minLength={minTitleLength}
+            />
 
-                <PostLengthFilter
-                    minLength={minTitleLength}
-                    onLengthChange={handleLengthChange}
-                />
-
-                <div className={styles.posts}>
-                    {filteredPosts.map((post) => (
-                        <PostCard key={post.id} post={post} />
-                    ))}
-                </div>
+            <div className={styles.posts}>
+                {filteredPosts.map((post) => (
+                    <PostCard key={post.id} post={post} />
+                ))}
             </div>
-        </>
+        </div>
     );
 };
 
