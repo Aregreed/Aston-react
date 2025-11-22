@@ -1,19 +1,18 @@
-import { Provider } from "react-redux";
+import { AppProviders } from './providers';
 import { BrowserRouter } from "react-router-dom";
-import { store } from "./store";
 import { ThemeProvider } from "../shared/lib/theme";
 import { AppRouter } from "./providers/router";
 import "./styles/global.css";
 
 function App() {
     return (
-        <Provider store={store}>
+        <AppProviders>
             <BrowserRouter>
                 <ThemeProvider>
                     <AppRouter />
                 </ThemeProvider>
             </BrowserRouter>
-        </Provider>
+        </AppProviders>
     );
 }
 

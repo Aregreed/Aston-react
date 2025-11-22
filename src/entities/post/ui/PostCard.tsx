@@ -1,4 +1,4 @@
-import type { Post } from "../api/postApi";
+import type { Post } from "../api/postsApi";
 import styles from './PostCard.module.css';
 import CommentList from '../../../widgets/CommentList/ui/CommentList';
 

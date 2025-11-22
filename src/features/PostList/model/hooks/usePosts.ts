@@ -1,9 +1,9 @@
 import { useMemo } from "react";
-import { useGetPostsQuery } from "../../../../entities/post/api/postApi";
+import { useGetPostsQuery } from "../../../../entities/post/api/postsApi";
 import { filterByLength } from "../../../PostLengthFilter/lib/filterByLength";
 
 export const usePosts = (minTitleLength: number = 5) => {
-    const { data: posts, isLoading, error } = useGetPostsQuery();
+    const { data: posts, isLoading, error, refetch } = useGetPostsQuery();
 
     const filteredPosts = useMemo(() => {
         if (!posts) return [];
@@ -15,5 +15,6 @@ export const usePosts = (minTitleLength: number = 5) => {
         isLoading,
         error,
         allPosts: posts || [],
+        refetch,
     };
 };

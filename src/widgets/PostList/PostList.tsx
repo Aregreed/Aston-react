@@ -3,7 +3,7 @@ import PostCard from "../../entities/post/ui/PostCard";
 import PostLengthFilter from "../../features/PostLengthFilter/ui/PostLengthFilter";
 import { filterByLength } from "../../features/PostLengthFilter/lib/filterByLength";
 import styles from "./PostList.module.css";
-import React, { useMemo, useState, useCallback } from "react";
+import React, { useMemo, useState} from "react";
 import withLoading from "../../shared/lib/hoc/withLoading";
 
 const PostList: React.FC = () => {
@@ -15,9 +15,9 @@ const PostList: React.FC = () => {
         return filterByLength(posts, minTitleLength);
     }, [posts, minTitleLength]);
 
-    const handleLengthChange = useCallback((length: number) => {
+    const handleLengthChange = (length: number) => {
         setMinTitleLength(length);
-    }, []);
+    };
 
     if (error) {
         return <div className={styles.error}>Ошибка при загрузке постов</div>;
