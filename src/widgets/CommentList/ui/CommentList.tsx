@@ -1,5 +1,5 @@
-import React, { useState, useCallback } from "react";
-import { useGetCommentsByPostIdQuery } from "../../../entities/post/api/postApi";
+import React, { useState } from "react";
+import { useGetCommentsByPostIdQuery } from "../../../entities/comment/api/commentsApi";
 import { useTheme } from "../../../shared/lib/theme";
 import styles from "./CommentList.module.css";
 
@@ -18,9 +18,9 @@ const CommentList: React.FC<CommentListProps> = ({ postId }) => {
         skip: !isExpanded,
     });
 
-    const toggleComments = useCallback(() => {
+    const toggleComments = () => {
         setIsExpanded((prev) => !prev);
-    }, []);
+    };
 
     if (error) {
         return <div className={styles.error}>Ошибка загрузки комментариев</div>;
