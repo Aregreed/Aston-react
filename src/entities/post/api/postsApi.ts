@@ -1,11 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
-export interface Post {
-    id: number;
-    title: string;
-    body: string;
-    userId: number;
-}
+import { Post, CreatePostRequest, UpdatePostRequest } from "../model/types";
 
 export const postsApi = createApi({
     reducerPath: "postsApi",
@@ -24,19 +18,29 @@ export const postsApi = createApi({
         }),
         getPostsByUserId: builder.query<Post[], number>({
             query: (userId) => `posts?userId=${userId}`,
-            providesTags: (_result) => [
+            providesTags: (result) => [
                 { type: "Post", id: "LIST" },
-                ...(_result?.map(({ id }) => ({ type: "Post" as const, id })) ||
+                ...(result?.map(({ id }) => ({ type: "Post" as const, id })) ||
                     []),
             ],
         }),
-        createPost: builder.mutation<Post, Partial<Post>>({
+        createPost: builder.mutation<Post, CreatePostRequest>({
             query: (body) => ({
                 url: "posts",
                 method: "POST",
                 body,
             }),
             invalidatesTags: ["Post"],
+        }),
+        updatePost: builder.mutation<Post, UpdatePostRequest>({
+            query: ({ id, ...body }) => ({
+                url: `posts/${id}`,
+                method: "PUT",
+                body,
+            }),
+            invalidatesTags: (_result, _error, { id }) => [
+                { type: "Post", id },
+            ],
         }),
     }),
 });
@@ -46,4 +50,5 @@ export const {
     useGetPostByIdQuery,
     useGetPostsByUserIdQuery,
     useCreatePostMutation,
+    useUpdatePostMutation,
 } = postsApi;
