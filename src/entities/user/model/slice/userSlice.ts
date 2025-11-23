@@ -1,5 +1,5 @@
 import {createSlice, createEntityAdapter, PayloadAction} from "@reduxjs/toolkit";
-import { User } from "../../api/usersApi";
+import { User } from '../types';
 
 const usersAdapter = createEntityAdapter<User>({
     sortComparer: (a, b) => a.name.localeCompare(b.name),

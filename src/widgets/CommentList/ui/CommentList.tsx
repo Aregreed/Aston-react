@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, MouseEventHandler } from "react";
 import { useGetCommentsByPostIdQuery } from "../../../entities/comment/api/commentsApi";
 import { useTheme } from "../../../shared/lib/theme";
 import styles from "./CommentList.module.css";
@@ -18,7 +18,7 @@ const CommentList: React.FC<CommentListProps> = ({ postId }) => {
         skip: !isExpanded,
     });
 
-    const toggleComments = () => {
+    const toggleComments: MouseEventHandler<HTMLButtonElement> = () => {
         setIsExpanded((prev) => !prev);
     };
 

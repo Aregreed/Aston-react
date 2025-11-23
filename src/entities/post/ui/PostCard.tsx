@@ -1,12 +1,13 @@
-import type { Post } from "../api/postsApi";
-import styles from './PostCard.module.css';
-import CommentList from '../../../widgets/CommentList/ui/CommentList';
+import React from "react";
+import { Post } from "../model/types";
+import styles from "./PostCard.module.css";
+import CommentList from "../../../widgets/CommentList/ui/CommentList";
 
 interface PostCardProps {
     post: Post;
 }
 
-const PostCard = ({ post }: PostCardProps) => {
+const PostCard: React.FC<PostCardProps> = ({ post }) => {
     return (
         <div className={`${styles.card} card`}>
             <h3 className={styles.title}>{post.title}</h3>
